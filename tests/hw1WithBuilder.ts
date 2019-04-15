@@ -33,7 +33,7 @@ describe("User flow", function() {
          */
         });
     
-        it.only ("users list", async function() {
+        it ("users list", async function() {
             const respAdminLogin = await new Request(
                 "http://ip-5236.sunline.net.ua:30020/users/login"
             )

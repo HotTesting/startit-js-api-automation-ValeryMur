@@ -2,7 +2,7 @@ import * as request from "request-promise-native";
 import * as faker from "faker";
 import { expect } from "chai";
 
-describe("User flow", function() {
+describe.only("User flow", function() {
     it("successful login", async function() {
         let respAdminLogin = await request.post(
             "http://ip-5236.sunline.net.ua:30020/users/login",
