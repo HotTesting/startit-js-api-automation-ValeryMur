@@ -129,24 +129,25 @@ describe("User flow", function() {
        
             });
 
-       /* it.only ("Register user with already existing email", async function(){
-            const email = faker.internet.email(undefined, undefined, "gmai.com");
-        //Register new user
-        let respNewUser = await new Request(
-            "http://ip-5236.sunline.net.ua:30020/users/register")
-        try{
-            respNewUser.method("POST")
-                    .body ({
+        it("Register user with already existing email", async function() {
+            const email = faker.internet.email(undefined, undefined, "gmail.com");
+        
+            try {
+                //Register new user
+                await new Request("http://ip-5236.sunline.net.ua:30020/users/register")
+                    .method("POST")
+                    .body({
                         username: email,
-                        email:  "test@test.com",
+                        email: "test@test.com",
                         password: "123456"
-                        })
+                    })
                     .send();
-        } catch(error)
-        {
-            expect(respNewUser.statusCode).to.equal(400);
-            expect(respNewUser.body.reason).to.contain("Email already exists.");
-        }
-
-        });*/
+            } catch (error) {
+                console.log(error.response.body);
+                console.log("status code:" + error.statusCode);
+                console.log("error reason" + error.response.body.reason);
+                expect(error.statusCode).to.equal(400);
+                expect(error.response.body.reason).to.contain("Email already exists.");
+            }
+        });
     });
