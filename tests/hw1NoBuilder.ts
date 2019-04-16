@@ -2,7 +2,7 @@ import * as request from "request-promise-native";
 import * as faker from "faker";
 import { expect } from "chai";
 
-describe.only("User flow", function() {
+describe ("User flow", function() {
     it("successful login", async function() {
         let respAdminLogin = await request.post(
             "http://ip-5236.sunline.net.ua:30020/users/login",
@@ -121,13 +121,13 @@ describe.only("User flow", function() {
             "http://ip-5236.sunline.net.ua:30020/api/users",
             {
             headers: {
-                Authorization: `Bearer $(respAdminLogin.token)`
+                Authorization: `Bearer ${respAdminLogin.token}`
                 },
             json: true
             }); 
             console.log("Users list", respUsersList);
 
-    expect(JSON.stringify(respUsersList.statusCode)).to.equal(200);    
+    //expect(JSON.stringify(respUsersList.statusCode)).to.equal(200);    
     expect(respUsersList, JSON.stringify(respUsersList)).to.be.an("array");
     expect(respUsersList[0], JSON.stringify(respUsersList[0])).to.include.keys("_id", "username");
 }); 
